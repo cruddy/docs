@@ -1,10 +1,10 @@
 Cruddy entity consists of many components. Each component has an interface and default implementation. It is possible to create your own implementation, but usually you'll be satisfied with the default implementation or extending it.
 
-* [[Field|field]]
-* [[Column|column]]
-* [[Validator|validator]]
-* [[Repository|repository]]
-* [[Schema|schema]]
+* [Field](#wiki-field)
+* [Column](#wiki-column)
+* [Validator](#wiki-validator)
+* [Repository](#wiki-repository)
+* [Schema](#wiki-schema)
 
 ## Field
 
