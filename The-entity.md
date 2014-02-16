@@ -26,6 +26,6 @@ Before data is sent to the repository, it must be validated first. Validator val
 
 Repository is responsible for performing actual CRUD operations. It retrieves data, creates, updated and deletes models. Default implementation just uses Laravel models to do this, but it also has methods to sync simple relationships (`BelongsTo`, `BelongsToMany`, etc).
 
-## The schema
+## Schema
 
 Entity's schema is a component that is responsible for creating other components. This is the place where you can override things. It is also provides configuration for the UI, so you can control how the entity's page looks.
