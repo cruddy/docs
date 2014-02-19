@@ -43,7 +43,7 @@ At this moment, we are interested in entity's schema, that describes fields, col
 
 _You can skip this section if you already have some eloquent models._ 
 
-We will create a simple post model, that will have a title, a body, an image and a boolean flag that determines whether the post is active. This is how table's [blueprint](http://laravel.com/docs/migrations) is looks like:
+We will create a simple post model, that will have a title, a body, an image and a boolean flag that determines whether the post is active. This is how table's [blueprint](http://laravel.com/docs/migrations) looks like:
 
 ```php
 $table->increments('id');
