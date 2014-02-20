@@ -221,4 +221,4 @@ $schema->inline('meta', 'meta');
 
 _Just like for [relates](#wiki-relates) fields you need to specify related entity's identifier._
 
-See [[this tutorial|Tutorial-inline-forms]] for more info.
+See [[this tutorial|Tutorial:-inline-forms]] for more info.
