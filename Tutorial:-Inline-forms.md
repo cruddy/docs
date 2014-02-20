@@ -1,0 +1,1 @@
+In this tutorial we will see in detail what are inline fields and how they are usefull.
