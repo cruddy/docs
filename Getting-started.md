@@ -94,9 +94,11 @@ To add schema to the repository, you need to open cruddy configuration file (`ap
 
 Now you have registered entity with name of `posts` and you can browse it right now going at `http://cruddy-demo.dev/backend/posts`. You'll see a table with two columns and nothing actually editable... That's because we haven't yet defined any fields nor columns.
 
+_Each schema component is defined in separate function. I will provide full component definition along with function name so you can orient._
+
 ### Fields
 
-Let's add some fields under `fields` function in schema definition:
+Field is an input that you are able to edit in the form. Let's add some under `fields` function in schema definition:
 
 ```php
 public function fields($schema)
@@ -109,6 +111,47 @@ public function fields($schema)
 }
 ```
 
-Fields definition is much like Laravel's Blueprint that we use to define table columns. Here we have added three fields besides auto generated ones: `title`, `body`, and `active`. They map to actual table columns and are of basic data type. Them you'll learn about more complex data types like relations and inline forms.
+Fields definition is much like Laravel's Blueprint that we use to define table columns. Here we have added three fields besides auto generated ones: `title`, `body`, and `active`. They map to actual table columns and are of basic data type. Then, you'll learn about more complex data types like relations and inline forms.
 
-Have you noticed `required` modificator? It just teels the UI to display addional note that field is required, it doesn't do any validation!
+Have you noticed `required` modificator? It just tels the UI to display addional note that field is required, it doesn't do any validation!
+
+Most of fields return actual field object which can be altered with some modificators, but some are just macros, like `timestamps`. This macros adds two fields: `updated_at` and `created_at`. You can define your own macros.
+
+### Columns
+
+Column will display some value in the list of items. It just extracts data from a model and displays it in special format. They are also responsible for sorting and filtering data. Not all columns can do that.
+
+Here is the columns for `Post` model:
+
+```php
+public function columns($schema)
+{
+    $schema->col('id');
+    $schema->col('title');
+    $schema->col('active');
+    $schema->col('updated_at')->orderDirection('desc');
+}
+```
+
+We just reference fields here. This is the most common use case.
+
+### Validation
+
+Now we have defined fields and columns, so we can see a list of models, we can create new and update old ones. But we don't validate data at all. And this is, among other things, is very important. Though Cruddy has advanced validator, we won't use it's full power for now.
+
+_Cruddy uses Laravel validation system, so defining rules is nothing complex._
+
+We marked `title` and `body` is required, so let's check this to be true:
+
+```php
+public function rules($v)
+{
+    $v->rules(
+    [
+        'title' => 'required',
+        'body' => 'required',
+    ]);
+}
+```
+
+That's it! Nothing else. Crazy simple.
