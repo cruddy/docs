@@ -133,6 +133,8 @@ Have you noticed `required` modificator? It just tels the UI to display addional
 
 Most of fields return actual field object which can be altered with some modificators, but some are just macros, like `timestamps`. This macros adds two fields: `updated_at` and `created_at`. You can define your own macros.
 
+[[See the list of available fields|Fields]].
+
 #### Columns
 
 Column will display some value in the list of items. It just extracts data from a model and displays it in special format. They are also responsible for sorting and filtering data. Not all columns can do that.
@@ -150,6 +152,8 @@ public function columns($schema)
 ```
 
 We just reference fields here. This is the most common use case.
+
+[[Read more about columns|Columns]].
 
 #### Validation
 
@@ -203,3 +207,8 @@ When you open start page you see nothing but main navigation. You can specify ei
 ```
 
 ## Further reading
+
+* [[Schema]]
+* [[Workflow]]
+* [[UI]]
+* [[Tutorial: Inline forms]]
