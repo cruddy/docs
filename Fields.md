@@ -183,6 +183,8 @@ $field->many();
 $field->accepts('text/plain');
 ```
 
+Read more about [[how files are uploaded|repository]].
+
 #### Image
 
 Image is also a file, but image will be displayed as image rather than a filename. Also, `accepts` modifier is already set to `image/*`.
