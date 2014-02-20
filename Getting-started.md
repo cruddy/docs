@@ -54,4 +54,61 @@ $table->boolean('active');
 $table->timestamps();
 ```
 
-Pretty common schema, right?
+Pretty common schema, right? Here is the model class:
+
+```php
+// app/models/Post.php
+<?php
+
+/**
+ * Model Post
+ */
+class Post extends Eloquent {
+
+    protected $table = 'posts';
+
+    protected $fillable = ['title', 'image', 'body', 'active'];
+}
+```
+
+I have set `$fillable` option to define editable fields. Cruddy will disable a field if its coresponding attribute is not fillable; this field will not pass a value to the repository, but it will be available for validation.
+
+### The schema
+
+Cruddy has a command for generating basic schema. To do this, simply execute following:
+
+```
+php artisan cruddy:schema PostSchema --model Post
+```
+
+New schema will be created in `app/entities` directory. For now, this is just a class that is not even autoloaded, so we need to do two things: add directory to composer class map and add schema to the entity repository. I hope you know how to make a directory autoloadable.
+
+To add schema to the repository, you need to open cruddy configuration file (`app/config/packages/kalnoy/cruddy/config.php`) and add a line to `entities` section, like so:
+
+```php
+'entities' =>
+[
+    'posts' => 'PostSchema',
+],
+```
+
+Now you have registered entity with name of `posts` and you can browse it right now going at `http://cruddy-demo.dev/backend/posts`. You'll see a table with two columns and nothing actually editable... That's because we haven't yet defined any fields nor columns.
+
+### Fields
+
+Let's add some fields under `fields` function in schema definition:
+
+```php
+public function fields($schema)
+{
+    $schema->increments('id');
+    $schema->string('title')->required();
+    $schema->text('body')->required();
+    $schema->boolean('active');
+    $schema->timestamps();
+}
+```
+
+Fields definition is much like Laravel's Blueprint that we use to define table columns. Here we have added three fields besides auto generated ones: `title`, `body`, and `active`. They map to actual table columns and are of basic data type. Them you'll learn about more complex data types like relations and inline forms.
+
+Have you noticed `required` modificator? It just teels the UI to display addional note that field is required, it doesn't do any validation!
