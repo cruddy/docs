@@ -1,5 +1,16 @@
 In this tutorial you'll learn how to install Cruddy on top of your Laravel app. If you don't have one, please follow [this guide](http://laravel.com/docs/installation). I also assume that you are familiar with the Laravel and know what is Eloquent model and how it works.
 
+* [Installation](#wiki-installation)
+* [First entity](#wiki-first-entity)
+    * [Eloquent model](#wiki-eloquent-model)
+    * [The schema](#wiki-the-schema)
+        * [Fields](#wiki-fields)
+        * [Columns](#wiki-columns)
+        * [Validation](#wiki-validation)
+    * [Making it visible](#wiki-making-it-visible)
+    * [Dashboard](#wiki-dashboard)
+* [Further reading](#wiki-further-reading)
+
 ## Installation
 
 Cruddy is available as a composer package. To install it, run following command in the terminal (make shure that current directory is your app's root):
@@ -96,7 +107,7 @@ Now you have registered entity with name of `posts` and you can browse it right 
 
 _Each schema component is defined in separate function. I will provide full component definition along with function name so you can orient._
 
-### Fields
+#### Fields
 
 Field is an input that you are able to edit in the form. Let's add some under `fields` function in schema definition:
 
@@ -122,7 +133,7 @@ Have you noticed `required` modificator? It just tels the UI to display addional
 
 Most of fields return actual field object which can be altered with some modificators, but some are just macros, like `timestamps`. This macros adds two fields: `updated_at` and `created_at`. You can define your own macros.
 
-### Columns
+#### Columns
 
 Column will display some value in the list of items. It just extracts data from a model and displays it in special format. They are also responsible for sorting and filtering data. Not all columns can do that.
 
@@ -140,7 +151,7 @@ public function columns($schema)
 
 We just reference fields here. This is the most common use case.
 
-### Validation
+#### Validation
 
 Now we have defined fields and columns, so we can see a list of models, we can create new and update old ones. But we don't validate data at all. And this is, among other things, is very important. Though Cruddy has advanced validator, we won't use it's full power for now.
 
@@ -160,3 +171,35 @@ public function rules($v)
 ```
 
 That's it! Nothing else. Crazy simple.
+
+### Making it visible
+
+Everything is done for the schema. But we don't have a way to access it besides entering an address in browser. For this reason Cruddy has configurable menu. There is a section called `menu` in package configuration. You can reference entity there simply entering it's identifier:
+
+```php
+'menu' =>
+[
+    'posts',
+],
+```
+
+You can group several entities:
+
+```php
+'menu' =>
+[
+    'Content' => [ 'posts', 'pages' ],
+],
+```
+
+### Dashboard
+
+When you open start page you see nothing but main navigation. You can specify either a view that will be displayed as dashboard, or you can specify an entity. It is done in configuration file:
+
+```php
+// You need to prefix entity identifier with @ to let system know
+// that it is an entity rather than a view file
+'dashboard' => '@posts',
+```
+
+## Further reading
