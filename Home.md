@@ -1,1 +1,3 @@
-Welcome to the cruddy wiki!
+Welcome to the Cruddy wiki!
+
+[[Getting started]]
