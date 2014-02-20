@@ -104,9 +104,14 @@ Field is an input that you are able to edit in the form. Let's add some under `f
 public function fields($schema)
 {
     $schema->increments('id');
+    
     $schema->string('title')->required();
-    $schema->text('body')->required();
+
+    // Use ACE to edit body as markdown
+    $schema->markdown('body')->required();
+
     $schema->boolean('active');
+
     $schema->timestamps();
 }
 ```
