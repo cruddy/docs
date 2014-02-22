@@ -1,5 +1,7 @@
 In this tutorial we will see in detail what are inline fields and how they are usefull.
 
+![Embedded meta data entity](https://drive.google.com/uc?id=0B8WgmUNiDzmyc1JwRU5DaFVqQjg)
+
 Laravel Eloquent supports many relation types. Let's talk about one-to-one relation type. How is it usefull? Well, I was asked this question long time ago when I was interviewed, and I didn't know the answer. But it's rather simple. I like to think about one-one relationship as an extension to the base table. This means that base table (i.e. post) may have additional data that is stored in separate table (i.e. html meta data), and may not have one. You can add as many extensions as you want without altering and adding new columns to the base table, therefore keeping things simple.
 
 Cruddy allows to edit your extensions together with your base model. Imagine this as embeding other entity's fields into one form.
