@@ -6,6 +6,7 @@ In this tutorial you'll learn how to install Cruddy on top of your Laravel app. 
     * [The schema](#wiki-the-schema)
         * [Fields](#wiki-fields)
         * [Columns](#wiki-columns)
+        * [Image](#wiki-image)
         * [Validation](#wiki-validation)
     * [Making it visible](#wiki-making-it-visible)
     * [Dashboard](#wiki-dashboard)
@@ -155,6 +156,48 @@ We just reference fields here. This is the most common use case.
 
 [[Read more about columns|Columns]].
 
+#### Image
+
+We've added all fields except image. This type of field needs some explanation. Since fields just process data, they cannot upload files. This is the responsibility of the repository how to deal with them. Default schema has special function `files` where you can specify what files repository should upload and where to upload them. This is how we can say repository to upload our image:
+
+```php
+public function files($repo)
+{
+    $repo->uploads('image');
+}
+```
+
+From this point, the repository will upload any file or files under `image` key to `public/files` and return path to that file against public directory (i.e. `files/jAsfn12.png`). Read more about how files are uploaded in [[this article|repository]].
+
+Don't forget to add a field to the schema:
+
+```php
+$schema->image('image');
+```
+
+And we can also display image in the list of posts:
+
+```php
+$schema->col('image')->format('Image');
+```
+
+We've used a formatter here or otherwise you would see a path to file rather than an image. Read more about columns and formatters [[here|columns]].
+
+But we are not done yet. What if user deletes the item that has some files? We need to delete the file, too. We need to handle `deleted` event. Ideal place to do this is `boot` method of `Post` model:
+
+```php
+public static function boot()
+{
+    parent::boot();
+
+    // Remove image file when model is deleted
+    static::deleted(function ($model)
+    {
+        if ($model->image) File::delete(public_path($model->image));
+    });
+}
+```
+
 #### Validation
 
 Now we have defined fields and columns, so we can see a list of models, we can create new and update old ones. But we don't validate data at all. And this is, among other things, is very important. Though Cruddy has advanced validator, we won't use it's full power for now.
@@ -170,6 +213,7 @@ public function rules($v)
     [
         'title' => 'required',
         'body' => 'required',
+        'image' => 'image',
     ]);
 }
 ```
@@ -211,4 +255,4 @@ When you open start page you see nothing but main navigation. You can specify ei
 * [[Schema]]
 * [[Workflow]]
 * [[UI]]
-* [[Tutorial: Inline forms]]
+* [[Tutorial: Embedding forms]]
