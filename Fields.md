@@ -38,6 +38,16 @@ Such field will just display a value without possibility to edit it.
 
 _If corresponding attribute of an Eloquent model is not fillable, field is disabled by default._
 
+### Labels
+
+Field label is generated from the id. For example, the field with an id of `first_name` will have label of `First name`. You can set label manually:
+
+```php
+$schema->string('first_name')->label('Name');
+```
+
+Read more about how to set field label in [[localization]] page.
+
 ## Field types
 
 All fields can be devided into two big groups: _basic fields_ and _relational fields_. Basic fields represent such simple types like strings, booleans, texts and images. Relational fields are for joining several models together.
@@ -198,7 +208,7 @@ $schema->image('image');
 Relational fields depend on relations rather than attributes. They take all needed information from relational queries that are defined on model.
 
 * [Relates](#wiki-relates)
-* [Inline](#wiki-inline)
+* [Embedded](#wiki-inline)
 
 #### Relates
 
@@ -211,16 +221,16 @@ Following relations are supported: `BelongsTo`, `BelongsToMany`, `HasMany`, `Mor
 $schema->relates('group', 'groups');
 ```
 
-#### Inline
+#### Embedded
 
-This is most interesting feature of Cruddy. Inline fields allow to edit related models _inside_ current. Imagine that you have a `Post` and `MetaData`. Meta data is stored in other table and `Post` `hasOne` `MetaData`. It is possible to edit post __and__ metadata together and not in separate forms. Another example is a product that has many parameters. You can add as many parameters as you want while editing product.
+This is most interesting feature of Cruddy. Embedded fields allow to edit related models _inside_ current. Imagine that you have a `Post` and `MetaData`. Meta data is stored in other table and `Post` `hasOne` `MetaData`. It is possible to edit post __and__ metadata together and not in separate forms. Another example is a product that has many parameters. You can add as many parameters as you want while editing product.
 
 Following relations are supported: `HasOne`, `MorphOne`, `HasMany`, `MorphMany`.
 
 ```php
-$schema->inline('meta', 'meta');
+$schema->embed('meta', 'meta');
 ```
 
 _Just like for [relates](#wiki-relates) fields you need to specify related entity's identifier._
 
-See [[this tutorial|Tutorial:-inline-forms]] for more info.
+See [[this tutorial|Tutorial:-embeding-forms]] for more info.
