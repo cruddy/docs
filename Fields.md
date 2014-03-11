@@ -234,14 +234,14 @@ $schema->relates('group', 'groups')->filterOptions(function ($q)
 
 ##### Constraining relations
 
-You can constraint available options based on other relation field. For example, when you select specific country, you get states only of that country.
+You can constraint available options based on other relational field. For example, when you select specific country, you get states only of that country.
 
 ```php
 $schema->relates('country', 'countries');
 $schema->relates('state', 'states')->constraintWith('country');
 ```
 
-[[Read more...|constraining relations]]
+[[Read more...|Сonstraining relations]]
 
 #### Embedded
 
@@ -255,4 +255,4 @@ $schema->embed('meta', 'meta');
 
 _Just like for [relates](#wiki-relates) fields you need to specify related entity's identifier._
 
-See [[this tutorial|Tutorial:-embeding-forms]] for more info.
+See [[this tutorial|Tutorial:-embedding-forms]] for more info.
