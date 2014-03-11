@@ -221,6 +221,28 @@ Following relations are supported: `BelongsTo`, `BelongsToMany`, `HasMany`, `Mor
 $schema->relates('group', 'groups');
 ```
 
+##### Filtering options
+
+It is possible to filter available options:
+
+```php
+$schema->relates('group', 'groups')->filterOptions(function ($q)
+{
+    $q->where('status', '=', 1);
+}
+```
+
+##### Constraining relations
+
+You can constraint available options based on other relation field. For example, when you select specific country, you get states only of that country.
+
+```php
+$schema->relates('country', 'countries');
+$schema->relates('state', 'states')->constraintWith('country');
+```
+
+[[Read more...|constraining relations]]
+
 #### Embedded
 
 This is most interesting feature of Cruddy. Embedded fields allow to edit related models _inside_ current. Imagine that you have a `Post` and `MetaData`. Meta data is stored in other table and `Post` `hasOne` `MetaData`. It is possible to edit post __and__ metadata together and not in separate forms. Another example is a product that has many parameters. You can add as many parameters as you want while editing product.
