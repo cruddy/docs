@@ -2,9 +2,16 @@ Field is an entity component. Field extracts data and sends it to the UI, where 
 
 Fields are defined in entity's [[schema|Schema]].
 
+* [Basic types](#wiki-basic-types)
+* [Relational types](#wiki-relational-types)
+
 ## Common operations
 
 Each field is an object, which can be modified.
+
+### Labels & help
+
+[[Localization]]
 
 ### Required fields
 
