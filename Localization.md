@@ -1,6 +1,8 @@
+Before you continue, please read about [localization](http://laravel.com/docs/localization) in Laravel.
+
 ## Localizing entities
 
-Each entity can have separate language file under `app/lang` directory. For example, to localize `users` entity, you can create `app/lang/en/users.php` file. This file can have following sections:
+Each entity can have separate language file under `app/lang` directory. For example, to localize `users` entity, you need to create `app/lang/en/users.php` file. This file can have following sections:
 
 * `title` to define entity's title in plural and singular form
 * `help` to specify help for fields and columns
