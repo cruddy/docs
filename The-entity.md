@@ -16,7 +16,7 @@ Cruddy has several field types that determine different data types, field has de
 
 ## Column
 
-Column is much like a field, but it works only in one-way direction. Columns extract data for a list of model rather than for single one. They are also responsible for filtering and sorting data.
+Column is much like a field, but it works only in one-way direction. Columns extract data for a list of model rather than for single one. They are also responsible for sorting data.
 
 There is two types of column: _proxy_ and _computed_. Proxy column uses a field to extract data, while computed column uses closures to work.
 
