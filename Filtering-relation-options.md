@@ -49,3 +49,7 @@ On `states` entity:
 ```php
 $schema->relates('parent', 'countries');
 ```
+
+### Contraintable fields
+
+There is no actual limits on fields that can be constrainted as long as they are filterable and are of same type. But most of fields are meaningless as filters. More sensible is to use `relates` and `enum` field types.
