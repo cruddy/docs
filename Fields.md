@@ -248,7 +248,7 @@ $schema->relates('country', 'countries');
 $schema->relates('state', 'states')->constraintWith('country');
 ```
 
-[[Read more...|Сonstraining relations]]
+[[Read more...|Filtering relation options]]
 
 #### Embedded
 
