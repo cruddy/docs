@@ -6,6 +6,7 @@ In this tutorial you'll learn how to install Cruddy on top of your Laravel app. 
     * [The schema](#wiki-the-schema)
         * [Fields](#wiki-fields)
         * [Columns](#wiki-columns)
+        * [Complex filters](#wiki-complex-filters)
         * [Image](#wiki-image)
         * [Validation](#wiki-validation)
     * [Making it visible](#wiki-making-it-visible)
@@ -138,7 +139,7 @@ Most of fields return actual field object which can be altered with some modific
 
 #### Columns
 
-Column will display some value in the list of items. It just extracts data from a model and displays it in special format. They are also responsible for sorting and filtering data. Not all columns can do that.
+Column will display some value in the list of items. It just extracts data from a model and displays it in special format. They are also responsible for sorting data, but not all columns can do that.
 
 Here is the columns for `Post` model:
 
@@ -155,6 +156,16 @@ public function columns($schema)
 We just reference fields here. This is the most common use case.
 
 [[Read more about columns|Columns]].
+
+#### Complex filters
+
+By default, Cruddy adds a search box for filtering data. You can add other more filters:
+
+```php
+protected $filters = ['active'];
+```
+
+Each filter coresponds to a field. Not all fields can filter data.
 
 #### Image
 
