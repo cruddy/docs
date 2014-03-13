@@ -241,7 +241,7 @@ $schema->relates('group', 'groups')->filterOptions(function ($q)
 
 ##### Constraining relations
 
-You can constraint available options based on other relational field. For example, when you select specific country, you get states only of that country.
+You can constraint available options based on other field. For example, when you select specific country, you get states only of that country.
 
 ```php
 $schema->relates('country', 'countries');
