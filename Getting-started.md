@@ -6,6 +6,7 @@ In this tutorial you'll learn how to install Cruddy on top of your Laravel app. 
     * [The schema](#wiki-the-schema)
         * [Fields](#wiki-fields)
         * [Columns](#wiki-columns)
+        * [Default value for fields](#default-values-for-fields)
         * [Complex filters](#wiki-complex-filters)
         * [Image](#wiki-image)
         * [Validation](#wiki-validation)
@@ -156,6 +157,17 @@ public function columns($schema)
 We just reference fields here. This is the most common use case.
 
 [[Read more about columns|Columns]].
+
+#### Default values for fields
+
+We can set default values for fields in creation form. For that we need add property ```$defaults``` array, where key is field's id, and value - field's value.
+For example:
+
+```php
+protected $defaults = ['free' => true, 'booked' => true, 'number' => '2'];
+```
+
+Each filter coresponds to a field. Not all fields can filter data.
 
 #### Complex filters
 
