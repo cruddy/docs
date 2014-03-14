@@ -167,8 +167,6 @@ For example:
 protected $defaults = ['free' => true, 'booked' => true, 'number' => '2'];
 ```
 
-Each filter coresponds to a field. Not all fields can filter data.
-
 #### Complex filters
 
 By default, Cruddy adds a search box for filtering data. You can add other more filters:
