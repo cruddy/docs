@@ -64,6 +64,7 @@ All fields can be devided into two big groups: _basic fields_ and _relational fi
 * [String](#wiki-string)
 * [Email](#wiki-email)
 * [Text](#wiki-text)
+* [Number formats](#wiki-number-formats)
 * [Code](#wiki-code)
 * [Markdown](#wiki-markdown)
 * [Enum](#wiki-enum)
@@ -103,6 +104,17 @@ Simple text editing input, represented by `<textarea>`.
 ```php
 $schema->text('bio')->rows(5);
 ```
+
+#### Number formats
+
+You can define an integer and a float types:
+
+```php
+$schema->integer('number');
+$schema->float('price');
+```
+
+Numbers are simple text fields with special filter.
 
 #### Code
 
