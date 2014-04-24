@@ -233,7 +233,7 @@ Relational fields depend on relations rather than attributes. They take all need
 
 This field type is for connecting models between. In the UI you will see a dropdown with possibility to search and select item or items.
 
-Following relations are supported: `BelongsTo`, `BelongsToMany`, `HasMany`, `MorphToMany`.
+Following relations are supported: `BelongsTo`, `BelongsToMany`, `MorphToMany`.
 
 ```php
 // Second argument is an identifier of related entity
