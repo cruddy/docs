@@ -50,3 +50,7 @@ To change entity's title, you need to specify singular and plural forms, like so
 ```php
 'title' => [ 'singular' => 'User', 'plural' => 'Users' ],
 ```
+
+## Localizing menu items
+
+Each menu item's label and a dropdown title can be a translation key. Cruddy will automatically translate it.
