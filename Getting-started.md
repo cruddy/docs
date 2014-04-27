@@ -239,7 +239,7 @@ public function rules($v)
 }
 ```
 
-That's it! Nothing else. Crazy simple.
+That's it! Nothing else. Crazy simple. [[More about validation|validation]].
 
 ### Making it visible
 
@@ -260,6 +260,8 @@ You can group several entities:
     'Content' => [ 'posts', 'pages' ],
 ],
 ```
+
+[[More about defining menu items|menu]].
 
 ### Dashboard
 
