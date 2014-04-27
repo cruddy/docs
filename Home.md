@@ -14,6 +14,7 @@ Welcome to the Cruddy wiki!
 * [[Repository]]
 * [[Validation]]
 * [[Localization]]
+* [[Menu]]
 
 ## Tuturials
 
