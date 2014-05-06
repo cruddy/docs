@@ -45,6 +45,18 @@ Such field will just display a value without possibility to edit it.
 
 _If corresponding attribute of an Eloquent model is not fillable, field is disabled by default._
 
+You can disable a field only when model is new:
+
+```php
+$schema->float('price')->disable(self::WHEN_NEW);
+```
+
+Or when model is exists:
+
+```php
+$shema->integer('type')->disable(self::WHEN_EXISTS);
+```
+
 ### Labels
 
 Field label is generated from the id. For example, the field with an id of `first_name` will have label of `First name`. You can set label manually:
@@ -76,6 +88,7 @@ All fields can be devided into two big groups: _basic fields_ and _relational fi
 * [Timestamps](#wiki-timestamps)
 * [File](#wiki-file)
 * [Image](#wiki-image)
+* [Computed](#computed)
 
 #### String
 
@@ -220,6 +233,26 @@ Image is also a file, but image will be displayed as image rather than a filenam
 
 ```php
 $schema->image('image');
+```
+
+#### Computed
+
+Sometimes you need to just display some value that is not actually stored in database. You can use computed field for this:
+
+```php
+$schema->computed('total', function ($model) { return $model->getTotal(); });
+```
+
+You can also specify a method on model class, so previous example can be implemented even so:
+
+```php
+$schema->computed('total', 'getTotal');
+```
+
+Actually, Cruddy will guess that you need function `getTotal` for `total` attribute, so this can be further shorten to this:
+
+```php
+$schema->computed('total');
 ```
 
 ### Relational types
