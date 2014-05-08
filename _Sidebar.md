@@ -1,3 +1,9 @@
+Getting started
+---------------
+
+- [[Installation|getting started]]
+- [[Configuration]]
+
 Quick links
 -----------
 
