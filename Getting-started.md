@@ -39,6 +39,14 @@ The next step is to enable Cruddy by adding a service provider:
 ),
 ```
 
+You can also specify a facade to quickly access [[the environment]]:
+
+```php
+'facades' => array(
+    'Cruddy' => 'Kalnoy\Cruddy\Facades\Cruddy',
+),
+```
+
 That's it! You can access backend page, though it is empty for now. By default, dashboard is available under `backend` route, but it is configurable.  So, the page address would look like something like this:
 
 ```
