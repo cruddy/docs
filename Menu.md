@@ -83,3 +83,7 @@ You can attach [bootstrap's glyphicon](http://getbootstrap.com/components/#glyph
     [ 'label' => 'Dashboard', 'url' => 'dashboard', 'icon' => 'dashboard' ],
 ]
 ```
+
+## Service menu
+
+Besides main menu you can define a service menu that is displayed in the right corner. The rules for building menu items are the same. Service menu is defined under `service_menu` configuration option.
