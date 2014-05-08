@@ -29,19 +29,19 @@ Sometimes there is need to add some rules only for new models, or only for exist
 public function rules($v)
 {
     // Default rules
-    $v->rules(
+    $v->always(
     [
         'password' => 'max:255',
     ]);
 
     // This rules will be applied only when model is created
-    $v->create(
+    $v->fresh(
     [
         'password' => 'required',
     ]);
 
     // This rules will be applied only when model is updated
-    $v->update(
+    $v->existing(
     [
         'password' => 'required_with:change_password',
     ]);
@@ -55,12 +55,12 @@ Specific rules are _merged_ with default rules based on whether the model exists
 It's such a pain when you need to define `unique` rule... When model is updated, you need to specify an id of the model to exclude it from validating. You can now reference input data by inserting string key in curly braces:
 
 ```php
-$v->create(
+$v->fresh(
 [
     'slug' => 'unique:products,slug'
 ]);
 
-$v->update(
+$v->existing(
 [
     'slug' => 'unique:products,slug,{id}'
 ]);
