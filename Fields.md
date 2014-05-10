@@ -11,7 +11,13 @@ Each field is an object, which can be modified.
 
 ### Labels & help
 
-[[Localization]]
+Field label is generated automatically from the id or [from language files](localization#changing-field-label).
+
+You can override a label like so:
+
+```php
+$schema->string('foo')->label('bar');
+```
 
 ### Required fields
 
