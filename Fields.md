@@ -21,7 +21,14 @@ You can mark field as required:
 $schema->string('title')->required();
 ```
 
-Required field is marked with red star to give user a clue, but no validation is performed.
+Required field is marked with red star to give user a clue, but __no validation is performed__.
+
+The field can be marked required only when model is exists or when it is new:
+
+```php
+$schema->string('foo')->required(self::WHEN_NEW);
+$schema->string('bar')->required(self::WHEN_EXISTS);
+```
 
 ### Unique fields
 

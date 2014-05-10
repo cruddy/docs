@@ -25,12 +25,12 @@ The schema looks like this:
 ```php
 Schema::create('meta', function(Blueprint $table)
 {
-	$table->increments('id');
-	$table->morphs('meta_holder');
-	$table->string('title');
-	$table->string('keywords');
-	$table->string('description');
-	$table->timestamps();
+    $table->increments('id');
+    $table->morphs('meta_holder');
+    $table->string('title');
+    $table->string('keywords');
+    $table->string('description');
+    $table->timestamps();
 });
 ```
 

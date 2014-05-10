@@ -17,7 +17,7 @@ Quick links
 Tutorials
 ---------
 
-- [[Embedding forms|tutorial: embedding forms]]
+- [[Embedding forms]]
 
 Advanced
 --------

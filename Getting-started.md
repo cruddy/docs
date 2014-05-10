@@ -286,4 +286,4 @@ When you open start page you see nothing but main navigation. You can specify ei
 * [[Schema]]
 * [[Workflow]]
 * [[UI]]
-* [[Tutorial: Embedding forms]]
+* [[Tutorial: Embedding forms|embedding forms]]
