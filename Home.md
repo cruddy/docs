@@ -18,7 +18,7 @@ Welcome to the Cruddy wiki!
 
 ## Tuturials
 
-* [[Embedding forms|tutorial: embedding forms]] -- explains how you can edit related models within main model
+* [[Embedding forms]] -- explains how you can edit related models within main model
 
 ## Advanced
 
