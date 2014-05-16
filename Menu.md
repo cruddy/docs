@@ -47,7 +47,7 @@ There is a shortcut for defining URL's:
 
 #### Disabling menu item
 
-Sometimes you need to hide a menu item if user doesn't have enough permissions. You can set `permissions` options which is either a string or closure. If it is a string, the value is resolved through `PermissionsInterface::hasAccess`. Closure should return boolean value that indicates whether the menu item is visible or not.
+Sometimes you need to hide a menu item if user doesn't have enough permissions. You can set `permissions` options which is a closure that should return boolean value to indicate whether the item is visible or not.
 
 ### Dropdown menus
 

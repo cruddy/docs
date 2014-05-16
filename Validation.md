@@ -66,6 +66,22 @@ $v->existing(
 ]);
 ```
 
+### Providing custom messages
+
+Sometimes you need to specify custom messages for some rules:
+
+```php
+$v->messages([ 'foo.required' => 'This field is required.' ]);
+```
+
+### Providing custom attribute labels
+
+It is possible to override default attribute labels:
+
+```php
+$v->customAttributes([ 'foo' => 'bar' ]);
+```
+
 ## Custom validator
 
 Custom validator must implement `Kalnoy\Cruddy\Service\Validation\ValidableInterface`. Validator is returned from schema's `validator` method. See [SchemaInterface](https://github.com/lazychaser/cruddy/blob/1.0/src/Kalnoy/Cruddy/Schema/SchemaInterface.php).
