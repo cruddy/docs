@@ -9,7 +9,7 @@ Quick links
 
 - [[Entities decoded|the entity]]
 - [[Supported fields|fields]]
-- [[Supported columns|colums]]
+- [[Supported columns|columns]]
 - [[Validation]]
 - [[Localization]]
 - [[Main menu|menu]]
