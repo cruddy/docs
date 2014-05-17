@@ -34,3 +34,24 @@ If file is exists, random name will be forced.
 ```html
 <img src="{{ asset($model->image) }}">
 ```
+
+### Multiple file uploads
+
+Remember that if you have specified multiple files, repository will receive an array
+rather than string. You need to define a behaviour in your models (i.e. serialize or
+convert array to JSON).
+
+For example, our model has `images` attribute that can have multiple files. We
+need to create attribute getter and setter in order it to be saved:
+
+```php
+public function getImagesAttribute($value)
+{
+    return json_decode($value) ?: [];
+}
+
+public function setImagesAttribute($value)
+{
+    $this->attributes['images'] = json_encode($value);
+}
+```
