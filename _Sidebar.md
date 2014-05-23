@@ -10,6 +10,7 @@ Quick links
 - [[Entities decoded|the entity]]
 - [[Supported fields|fields]]
 - [[Supported columns|columns]]
+- [Tuning entity](schema#tuning)
 - [[Validation]]
 - [[Localization]]
 - [[Main menu|menu]]
@@ -23,3 +24,4 @@ Advanced
 --------
 
 - [[Workflow]]
+- [[Plugins|plugins/introduction]]
