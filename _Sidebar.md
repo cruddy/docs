@@ -24,4 +24,4 @@ Advanced
 --------
 
 - [[Workflow]]
-- [[Plugins|plugins/introduction]]
+- [[Plugins|writing-plugins]]

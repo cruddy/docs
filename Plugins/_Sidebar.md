@@ -3,6 +3,6 @@
 Table of contents
 -----------------
 
-- [[Introduction|plugins/introduction]]
-- [Registering CSS & JS files](introduction#registering-new-css-and-js-files)
-- [[Creating new field type|plugins/new-field-type]]
+- [[Introduction|writing-plugins]]
+- [Registering CSS & JS files](writing-plugins#registering-new-css-and-js-files)
+- [[Creating new field type|new-field-type]]
