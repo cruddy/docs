@@ -1,20 +1,12 @@
 Welcome to the Cruddy wiki!
 
-## Getting started
-
-* [[Getting started]]
-* [[Supported fields|fields]]
-* [[Supported columns|columns]]
+Getting started                  | Configuration                | Entity
+-------------------------------- | ---------------------------- | ----------------------------------
+[[Installation|getting started]] | [[Configuration]]            | [[Components overview|the entity]]
+[[Supported fields|fields]]      | [[Configuring menu|menu]]    | [[Validation]]
+[[Supported columns|columns]]    | [[Localization]]             | [Tuning entity](schema#tuning)
 
 ![The Cruddy](https://drive.google.com/uc?id=0B8WgmUNiDzmySlZEeGFlRVdwbzQ)
-
-## Further reading
-
-* [[Entity components|the entity]]
-* [[Repository]]
-* [[Validation]]
-* [[Localization]]
-* [[Menu]]
 
 ## Tuturials
 
@@ -22,4 +14,5 @@ Welcome to the Cruddy wiki!
 
 ## Advanced
 
-* [[Workflow]]
+* Read a [[workflow]] article to learn how Cruddy works internally
+* [[Extending Cruddy|writing-plugins]]

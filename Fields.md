@@ -2,8 +2,8 @@ Field is an entity component. Field extracts data and sends it to the UI, where 
 
 Fields are defined in entity's [[schema|Schema]].
 
-* [Basic types](#wiki-basic-types)
-* [Relational types](#wiki-relational-types)
+* [Basic types](#basic-types)
+* [Relational types](#relational-types)
 
 ## Common operations
 
@@ -84,22 +84,14 @@ All fields can be devided into two big groups: _basic fields_ and _relational fi
 
 ### Basic types
 
-* [String](#wiki-string)
-* [Email](#wiki-email)
-* [Text](#wiki-text)
-* [Number formats](#wiki-number-formats)
-* [Code](#wiki-code)
-* [Markdown](#wiki-markdown)
-* [Enum](#wiki-enum)
-* [Boolean](#wiki-boolean)
-* [Password](#wiki-password)
-* [Datetime](#wiki-datetime)
-* [Date](#wiki-date)
-* [Time](#wiki-time)
-* [Timestamps](#wiki-timestamps)
-* [File](#wiki-file)
-* [Image](#wiki-image)
-* [Computed](#computed)
+String types             | Date types                 | File types         | Other types                      
+------------------------ | -------------------------- | ------------------ | ---------------------------------
+[String](#string)        | [Datetime](#datetime)      | [File](#file)      | [Number formats](#number-formats)
+[Email](#email)          | [Date](#date)              | [Image](#image)    | [Enum](#enum)                    
+[Password](#password)    | [Time](#time)              |                    | [Boolean](#boolean)              
+[Text](#text)            | [Timestamps](#timestamps)  |                    | [Computed](#computed)            
+[Code](#code)            |                            |                    |                                  
+[Markdown](#markdown)    |                            |                    |                                  
 
 #### String
 
@@ -138,7 +130,7 @@ $schema->integer('number');
 $schema->float('price');
 ```
 
-Numbers are simple text fields with special filter.
+Numbers are simple text fields that provide special filter.
 
 #### Code
 
@@ -277,14 +269,14 @@ $schema->computed('total');
 
 ### Relational types
 
-Relational fields depend on relations rather than attributes. They take all needed information from relational queries that are defined on model.
+Relational fields depend on relations rather than attributes. So, in order to define relational field, corresponding relation must be defined on target Eloquent model.
 
-* [Relates](#wiki-relates)
-* [Embedded](#wiki-inline)
+* [Dropdown selector](#dropdown-selector)
+* [Embedding forms](#embedding-forms)
 
-#### Relates
+#### Dropdown selector
 
-This field type is for connecting models between. In the UI you will see a dropdown with possibility to search and select item or items.
+This field type is for connecting models between. In the UI you will see a dropdown that is able to search and select item or items.
 
 Following relations are supported: `BelongsTo`, `BelongsToMany`, `MorphToMany`.
 
@@ -292,6 +284,8 @@ Following relations are supported: `BelongsTo`, `BelongsToMany`, `MorphToMany`.
 // Second argument is an identifier of related entity
 $schema->relates('group', 'groups');
 ```
+
+In this case a `group` relation is required on target model.
 
 ##### Filtering options
 
@@ -315,9 +309,9 @@ $schema->relates('state', 'states')->constraintWith('country');
 
 [[Read more...|Filtering relation options]]
 
-#### Embedded
+#### Embedding forms
 
-This is most interesting feature of Cruddy. Embedded fields allow to edit related models _inside_ current. Imagine that you have a `Post` and `MetaData`. Meta data is stored in other table and `Post` `hasOne` `MetaData`. It is possible to edit post __and__ metadata together and not in separate forms. Another example is a product that has many parameters. You can add as many parameters as you want while editing product.
+This is most interesting feature of Cruddy. Embedded forms allow to edit related models _inside_ current. Imagine that you have a `Post` and `MetaData`. Meta data is stored in other table and `Post` `hasOne` `MetaData`. It is possible to edit post __and__ metadata together and not in separate forms. Another example is a product that has many parameters. You can add as many parameters as you want while editing product.
 
 Following relations are supported: `HasOne`, `MorphOne`, `HasMany`, `MorphMany`.
 
@@ -325,6 +319,14 @@ Following relations are supported: `HasOne`, `MorphOne`, `HasMany`, `MorphMany`.
 $schema->embed('meta', 'meta');
 ```
 
-_Just like for [relates](#wiki-relates) fields you need to specify related entity's identifier._
+_Just like for [dropdowns](#dropdown-selector) you need to specify related entity's identifier._
 
 See [[this tutorial|Tutorial:-embedding-forms]] for more info.
+
+##### Validating embedded models
+
+Actual data of related model is validated using rules that are defined in related entity, but the field is available when validating target model. This field will contain a number of created models, so you can check whether user provided related model:
+
+```php
+'meta' => 'required',
+```

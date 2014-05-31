@@ -65,7 +65,7 @@ public function meta()
 
 ## Entity
 
-Now when model is set up, we need to generate a schema for it. Since the meta entity will be embeded, we only need to define fields and rules possibly.
+Now when model is set up, we need to generate a schema for it. Since the meta entity will be embeded, we only need to define fields and rules (not required).
 
 Run this to generate new schema:
 
@@ -100,7 +100,7 @@ class MetaSchema extends BaseSchema {
         $schema->text('description')->rows(3)->label('Meta description');
 
         // We don't want timestamps to be visible
-        // $schema->timestamps();
+        $schema->timestamps(false);
     }
 
     /**
