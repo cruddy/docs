@@ -56,8 +56,6 @@ $schema->boolean('active')->disable();
 
 Such field will just display a value without possibility to edit it.
 
-_If corresponding attribute of an Eloquent model is not fillable, field is disabled by default._
-
 You can disable a field only when model is new:
 
 ```php
@@ -223,7 +221,14 @@ $schema->time('time');
 Shortcut for adding `updated_at` and `created_at` fields.
 
 ```php
-$schema->timestamps();
+$schema->timestamps($hide = false, $disable = null);
+```
+
+By default, `updated_at` field is disabled and `created_at` isn't. To
+disable both fields set `$disable` parameter to `true`:
+
+```php
+$schema->timestamps(false, true);
 ```
 
 #### File

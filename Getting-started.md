@@ -89,11 +89,8 @@ class Post extends Eloquent {
 
     protected $table = 'posts';
 
-    protected $fillable = ['title', 'image', 'body', 'active'];
 }
 ```
-
-I have set `$fillable` option to define editable fields. Cruddy will disable a field if its coresponding attribute is not fillable; this field will not pass a value to the repository, but it will be available for validation.
 
 ### The schema
 
