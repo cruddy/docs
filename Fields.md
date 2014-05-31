@@ -321,7 +321,7 @@ $schema->embed('meta', 'meta');
 
 _Just like for [dropdowns](#dropdown-selector) you need to specify related entity's identifier._
 
-See [[this tutorial|Tutorial:-embedding-forms]] for more info.
+See [[this tutorial|embedding-forms]] for more info.
 
 ##### Validating embedded models
 
