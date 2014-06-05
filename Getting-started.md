@@ -19,7 +19,7 @@ In this tutorial you'll learn how to install Cruddy on top of your Laravel app. 
 Cruddy is available as a composer package. To install it, run following command in the terminal (make shure that current directory is your app's root):
 
 ```
-composer require kalnoy/cruddy:1.0.*@dev
+composer require kalnoy/cruddy:dev-master@dev
 ```
 
 Then you need to publish some assets and config file:
