@@ -149,6 +149,47 @@ protected function externalUrl($model)
 }
 ```
 
+### Custom states for rows
+
+You can apply custom CSS classes or _states_ per row in the datagrid. You
+just need to define a meta column `states` like so:
+
+```php
+public function columns($schema)
+{
+    ...
+
+    $schema->states(function ($model)
+    {
+        return $model->isNew() : 'new' : '';    
+    });
+}
+```
+
+Or this way:
+
+```php
+$schema->states(
+[
+    // The model will have a state of "new" if closure returns true
+    'new' => function ($model) { return $model->isNew(); },
+]);
+
+// The equivalent of previous
+$schema->states([ 'new' ]);
+```
+
+Since Cruddy is based on Twitter Bootstrap, the datagrid has following
+[predefined states](http://getbootstrap.com/css/#tables-contextual-classes): 
+`success` (green), `info` (blue), `warning` (yellow), `danger` (red).
+
+```php
+$schema->states(
+[
+    'success' => function ($model) { return $model->isNew(); },
+]);
+```
+
 ## More control
 
 - [Custom validator](validation#custom-validator)
