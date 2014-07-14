@@ -2,11 +2,11 @@ Services are different components of Cruddy's core that might be extended in som
 way. Each service is available from the IoC (i.e. `app('cruddy')` is the main service,
 `app('cruddy.assets')` is a component responsible for assets management).
 
--   [Fields & Columns](#field-columns)
+-   [Fields and columns](#fields-and-columns)
 -   [Assets](#assets)
 -   [Lang](#lang)
 
-## Fields & Columns
+## Fields and columns
 
 `cruddy.fields` and `cruddy.columns`
 
