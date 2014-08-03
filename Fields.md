@@ -78,6 +78,18 @@ $schema->string('first_name')->label('Name');
 
 Read more about how to set field label in [[localization]] page.
 
+### Input addons
+
+For input-like field (string, email, password, integer, float) it is possible to
+[append or prepend](http://getbootstrap.com/components/#input-groups-basic) some text:
+
+```php
+$schema->float('price')->append('$');
+
+// Those labels are automatically translated
+$schema->string('foo')->prepend('bar.baz');
+```
+
 ## Field types
 
 All fields can be devided into two big groups: _basic fields_ and _relational fields_. Basic fields represent such simple types like strings, booleans, texts and images. Relational fields are for joining several models together.

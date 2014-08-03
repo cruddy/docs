@@ -13,7 +13,8 @@ To insert a link to the entity, you can simply insert it's id, like so:
 ]
 ```
 
-You'll get a link to the entity with generated label. If you want more control, you can expand this to an array:
+You'll get a link to the entity with generated label. If you want more control,
+you can expand this to an array:
 
 ```php
 'menu' =>
@@ -47,7 +48,20 @@ There is a shortcut for defining URL's:
 
 #### Disabling menu item
 
-Sometimes you need to hide a menu item if user doesn't have enough permissions. You can set `permissions` options which is a closure that should return boolean value to indicate whether the item is visible or not.
+Sometimes you need to hide a menu item if user doesn't have enough permissions.
+You can set `permissions` options which is a closure that should return boolean
+value to indicate whether the item is visible or not.
+
+```php
+'menu' =>
+[
+    [
+        'label' => 'Import',
+        'route' => 'import',
+        'permissions' => function () { return Auth::user()->isAdmin(); },
+    ],
+]
+```
 
 ### Dropdown menus
 
@@ -59,6 +73,18 @@ When getting more and more links, it's time to group some of them together:
     'Auth' => [ 'users', 'groups' ],
 ]
 ```
+
+Or more expanded version:
+
+```php
+'menu' =>
+[
+    [
+        'label' => 'Auth',
+        'items' => [ 'users', 'groups' ],
+        // Any other attributes
+    ],
+],
 
 ### Separators
 
@@ -84,6 +110,27 @@ You can attach [bootstrap's glyphicon](http://getbootstrap.com/components/#glyph
 ]
 ```
 
+### Additional attributes
+
+Any other key in the array will be set as an attribute on the menu item element,
+so it is possible to provide additional information:
+
+```php
+'menu' =>
+[
+    [
+        'label' => 'Dashboard',
+        'url' => 'dashboard',
+        'icon' => 'dashboard',
+        
+        'id' => 'dashboard',
+        'data-foo' => 'bar',
+    ],
+]
+```
+
 ## Service menu
 
-Besides main menu you can define a service menu that is displayed in the right corner. The rules for building menu items are the same. Service menu is defined under `service_menu` configuration option.
+Besides main menu you can define a service menu that is displayed in the right corner.
+The rules for building menu items are the same. Service menu is defined under
+`service_menu` configuration option.
