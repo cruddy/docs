@@ -200,14 +200,6 @@ $schema->password('password');
 $schema->datetime('deleted_at');
 ```
 
-Each date-related field has a format which can be changed:
-
-```php
-$schema->datetime('deleted_at')->format('HH:mm');
-```
-
-See [available formats](http://momentjs.com/docs/#/displaying/format/).
-
 #### Date
 
 ```php
