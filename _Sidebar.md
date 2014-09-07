@@ -10,7 +10,7 @@ Quick links
 -   [[Entities decoded|the entity]]
 -   [[Supported fields|fields]]
 -   [[Supported columns|columns]]
--   [Tuning entity](/schema#tuning)
+-   [Tuning entity](/lazychaser/cruddy/wiki/schema#tuning)
 -   [[Validation]]
 -   [[Localization]]
 -   [[Main menu|menu]]
@@ -24,4 +24,4 @@ Advanced
 --------
 
 -   [[Workflow]]
--   [[Plugins|writing-plugins]]
+-   [[Plugins|Writing-plugins]]
