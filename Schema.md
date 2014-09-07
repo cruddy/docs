@@ -64,6 +64,27 @@ public function columns($s)
 
 See the list of [[available columns|columns]].
 
+### Changing form's layout
+
+[[Main article|layouts]]
+
+When the number of fields and embedded entities is growing, the form becomes pretty
+messy and really tall. In order to make the form more pretty, you can define a layout
+based on tabs, fieldsets, rows and columns.
+
+Here's the example of the layout:
+
+
+```php
+public function layout($l)
+{
+    $l->row([ 'first_name', 'last_name' ]);
+    $l->fieldset('Credentials', [ 'email', 'password' ]);
+
+    $l->tab('Profile', 'profile');
+}
+```
+
 ### Validation rules
 
 [[Main article|validation]]
