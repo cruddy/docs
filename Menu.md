@@ -85,6 +85,7 @@ Or more expanded version:
         // Any other attributes
     ],
 ],
+```
 
 ### Separators
 

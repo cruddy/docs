@@ -1,6 +1,7 @@
-Field is an entity component. Field extracts data and sends it to the UI, where user can edit it. After he saves a data, field will process it to send to the [[repository|Repository]].
+Field extracts data for the UI, where user can edit it. After he saves the data, field will process it to send to the 
+[[repository|Repository]].
 
-Fields are defined in entity's [[schema|Schema]].
+Fields are defined in the [[schema|Schema]].
 
 * [Basic types](#basic-types)
 * [Relational types](#relational-types)
@@ -13,7 +14,7 @@ Each field is an object, which can be modified.
 
 Field label is generated automatically from the id or [from language files](localization#changing-field-label).
 
-You can override a label like so:
+You can override the label like so:
 
 ```php
 $schema->string('foo')->label('bar');
@@ -36,9 +37,12 @@ $schema->string('foo')->required(self::WHEN_NEW);
 $schema->string('bar')->required(self::WHEN_EXISTS);
 ```
 
+Since v0.4.0 fields are automatically marked required based on the information from the validation rules.
+
 ### Unique fields
 
-In Cruddy you can copy models. But sometimes it is not desired that field is copied (like timestamps). You can disable copying specific field using `unique` modifier:
+In Cruddy you can copy models. But sometimes it is not desired that field is copied (like timestamps).
+You can disable copying specific field using `unique` modifier:
 
 ```php
 $schema->datetime('last_login_at')->unique();
@@ -48,7 +52,7 @@ _Some fields are unique by default, like `$schema->timestamps()` and `$schema->i
 
 ### Disabling fields
 
-You can disable field editing using `disable` modifier:
+You can disable a field using `disable` modifier:
 
 ```php
 $schema->boolean('active')->disable();
@@ -68,16 +72,6 @@ Or when model is exists:
 $shema->integer('type')->disable(self::WHEN_EXISTS);
 ```
 
-### Labels
-
-Field label is generated from the id. For example, the field with an id of `first_name` will have label of `First name`. You can set label manually:
-
-```php
-$schema->string('first_name')->label('Name');
-```
-
-Read more about how to set field label in [[localization]] page.
-
 ### Input addons
 
 For input-like field (string, email, password, integer, float) it is possible to
@@ -92,7 +86,9 @@ $schema->string('foo')->prepend('bar.baz');
 
 ## Field types
 
-All fields can be devided into two big groups: _basic fields_ and _relational fields_. Basic fields represent such simple types like strings, booleans, texts and images. Relational fields are for joining several models together.
+All fields can be devided into two big groups: _basic fields_ and _relational fields_.
+Basic fields represent such simple types like strings, booleans, texts and images.
+Relational fields are for joining several models together.
 
 ### Basic types
 

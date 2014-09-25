@@ -11,10 +11,10 @@ references a field to extract and format data. This column is defined this way:
 $s->col('name');
 ```
 
-Now you will have a column that will display `name` field's value.
+Now you will have a column that will display the value of the field `name`.
 
-Sometimes you need to display not ordinary data. Computed columns come in handy.
-You can specify a closure for extracting data:
+Sometimes you need to display non-ordinary data. Computed columns come in handy.
+You can specify a closure for extracting a data:
 
 ```php
 $s->compute('full_name', function ($person)
@@ -46,7 +46,7 @@ $s->col('avatar')->format('Image', [ 'width' => 150 ]);
 
 ##### Plain
 
-Do disable formatting at all, you can use `Plain` formatter:
+To display data as is (allowing HTML tags), you can use `Plain` formatter:
 
 ```php
 $s->col('foo')->format('Plain');
@@ -54,7 +54,7 @@ $s->col('foo')->format('Plain');
 
 #### Image
 
-`Image` formatter inserts a thumbnail into data grid:
+`Image` formatter inserts a thumbnail into the data grid:
 
 ```php
 $s->col('image')->format('Image', $options);
