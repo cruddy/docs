@@ -20,7 +20,16 @@ You can override the label like so:
 $schema->string('foo')->label('bar');
 ```
 
+To set the help message:
+
+```php
+$schema->string('foo')->help('bar');
+```
+
 ### Required fields
+
+__IMPORTANT!___ Since v0.4.0 fields are automatically marked required based on the information from the validation 
+rules.
 
 You can mark field as required:
 
@@ -36,8 +45,6 @@ The field can be marked required only when model is exists or when it is new:
 $schema->string('foo')->required(self::WHEN_NEW);
 $schema->string('bar')->required(self::WHEN_EXISTS);
 ```
-
-Since v0.4.0 fields are automatically marked required based on the information from the validation rules.
 
 ### Unique fields
 
@@ -247,6 +254,18 @@ Image is also a file, but image will be displayed as image rather than a filenam
 $schema->image('image');
 ```
 
+To set the thumbnail size:
+
+```php
+$schema->image('foo')->thumbnailSize(150, 150);
+
+// Height will be computed based on aspect ratio
+$schema->image('bar')->width(150);
+
+// Width will be computed based on aspect ratio
+$schema->image('baz')->height(100);
+```
+
 #### Computed
 
 Sometimes you need to just display some value that is not actually stored in database. You can use computed field for this:
@@ -286,6 +305,9 @@ $schema->relates('group', 'groups');
 ```
 
 In this case a `group` relation is required on target model.
+
+__IMPORTANT!__ Read [this](schema#setting-title-attribute-property) if you're wondering how to display sensible names in
+a list.
 
 ##### Filtering options
 
