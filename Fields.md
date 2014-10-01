@@ -28,7 +28,7 @@ $schema->string('foo')->help('bar');
 
 ### Required fields
 
-__IMPORTANT!___ Since v0.4.0 fields are automatically marked required based on the information from the validation 
+__IMPORTANT!__ Since v0.4.0 fields are automatically marked required based on the information from the validation 
 rules.
 
 You can mark field as required:
