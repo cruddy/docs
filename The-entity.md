@@ -1,10 +1,16 @@
 Cruddy entity consists of many components. Each component has an interface and default implementation. It is possible to create your own implementation, but usually you'll be satisfied with the default implementation or extending it.
 
+* [Schema](#schema)
 * [Field](#field)
 * [Column](#column)
 * [Validator](#validator)
 * [Repository](#repository)
-* [Schema](#schema)
+
+## Schema
+
+[[Read main article|schema]]
+
+Entity's schema is a component that is responsible for creating other components. This is the place where you can override things. It is also provides configuration for the UI, so you can control how the entity's page looks.
 
 ## Field
 
@@ -34,8 +40,3 @@ Before data is sent to the repository, it must be validated first. Validator val
 
 Repository is responsible for performing actual CRUD operations. It retrieves data, creates, updated and deletes models. Default implementation just uses Laravel models to do this, but it also has methods to sync simple relationships (`BelongsTo`, `BelongsToMany`, etc).
 
-## Schema
-
-[[Read main article|schema]]
-
-Entity's schema is a component that is responsible for creating other components. This is the place where you can override things. It is also provides configuration for the UI, so you can control how the entity's page looks.
