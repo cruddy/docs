@@ -85,6 +85,21 @@ public function layout($l)
 }
 ```
 
+### Actions
+
+[[Main article|actions]]
+
+Action is an extra method of saving model that allows to set some extra properties on the model
+before it is saved. For example, an action for publishing a post:
+
+```php
+$actions
+    ->define('publish', function (Post $model) { $model->publish(); })
+    ->title('Publish')
+    ->state('success')
+    ->disable(function (Post $model) { return $model->isPublished(); });
+```
+
 ### Validation rules
 
 [[Main article|validation]]
