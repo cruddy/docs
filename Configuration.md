@@ -31,8 +31,7 @@ user is authenticated and has required permissions. The default value is `null`,
 schema's class name. For example:
 
 ```php
-'entities' =>
-[
+'entities' => [
     'users' => 'UserSchema',
     'groups' => 'GroupSchema',
 ],
@@ -43,8 +42,6 @@ Each schema is resolved from the IoC container.
 ### Presentational options
 
 `brand` and `brand_url` determine the application name and the url to the main page, the link will be displayed in the left part of the main navigation.
-
-`ace_theme` sets the default color theme for ace editor. The default value is `chrome`.
 
 ### Menu configuration
 

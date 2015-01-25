@@ -77,4 +77,4 @@ $s->col('name')->reversed();
 
 ### Changing header
 
-[Localizing columns](localization#changing-columns-header).
+[Localizing columns](localization#changing-labels).

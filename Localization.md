@@ -1,55 +1,57 @@
 Before you continue, please read about [localization](http://laravel.com/docs/localization) in Laravel.
 
-## Localizing entities
+Cruddy can automatically translate entity's title, field, column and filter labels, and also automatically add a help
+message.
 
-Each entity can have separate language file under `app/lang` directory. For example, to localize `users` entity, you need to create `app/lang/en/users.php` file. This file can have following sections:
+In order to do this, you need to create `entities.php` file under a language-specific folder, i.e. `lang/ru/entities
+.php`. This file has following sections:
 
-* `title` to define entity's title in plural and singular form
-* `help` to specify help for fields and columns
-* `fields` to alter field labels
-* `columns` to alter column headers
+-   `titles` for translating entities titles;
+-   `fields` for translating field labels;
+-   `columns` for translating column headers;
+-   `filters` for translating filter titles;
+-   `help` for applying help message.
 
-There is also a master file with a name of `entities.php` that can have `help`, `fields` and `columns` sections where you can specify values that will be used by all entities. This is the place for defining common labels and headers.
+### Setting entity's title
 
-### Changing field label
-
-To specify a field label, you need to define it under `fields` section. I.e. for `updated_at` field:
+The title of the entity with an id of `foo` can be clarified easily:
 
 ```php
-'fields' =>
-[
-    'updated_at' => 'Updated at',
+'titles' => [
+    'foo' => [ 'singular' => 'Foo', 'plural' => 'Foos' ],
 ],
 ```
 
-That's how the label of the field with an id of `{id}` of the entity with an id of `{entity}` is resolved:
+Title is defined in singular and plural forms.
 
-1. Cruddy tries to translate a key of `{entity}.fields.{id}`,
-2. if no value is found, it tries other key: `entities.fields.{id}`;
-3. Otherwise, Cruddy just prettifies field's id.
+### Changing labels
 
-### Changing column's header
+In order to change a label for filter, column or filter, you need to add an entry in corresponding section. For example,
+imagine we have field with an id of `foo`, it can be translated by adding following entry under `fileds` section:
 
-The rules are the same as for changing field's label, but header is specified under `columns` section.
+```php
+'fields' => [
+    'foo' => 'Bar',
+],
+```
 
 ### Specifying help message
 
-You can specify a help message for a field or column under `help` section of entity's language file:
+Each field and column can get a help message automatically from localization file:
 
 ```php
-'help' =>
-[
-    'updated_at' => 'The last time when resource was updated',
+'help' => [
+    'foo' => 'Foo help message',
 ],
 ```
 
-### Changing entity's title
+In this case, each field and column with an id of `foo` will have a help message.
 
-To change entity's title, you need to specify singular and plural forms, like so:
+## Overriding common labels
 
-```php
-'title' => [ 'singular' => 'User', 'plural' => 'Users' ],
-```
+Sometimes happens that some common field of an entity needs to be labeled differently. In this case, you can create
+a separate language file with a name of the id of the entity, i.e. `products.php`. This file can contain same sections
+as `entities.php`.
 
 ## Localizing menu items
 

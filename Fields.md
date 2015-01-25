@@ -12,7 +12,7 @@ Each field is an object, which can be modified.
 
 ### Labels & help
 
-Field label is generated automatically from the id or [from language files](localization#changing-field-label).
+Field label is generated automatically from the id.
 
 You can override the label like so:
 
@@ -25,6 +25,8 @@ To set the help message:
 ```php
 $schema->string('foo')->help('bar');
 ```
+
+Also, you can set up common labels and help using [[language files|localization]].
 
 ### Required fields
 
