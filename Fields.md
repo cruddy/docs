@@ -105,8 +105,6 @@ String types             | Date types                 | File types         | Oth
 [Email](#email)          | [Date](#date)              | [Image](#image)    | [Enum](#enum)                    
 [Password](#password)    | [Time](#time)              |                    | [Boolean](#boolean)              
 [Text](#text)            | [Timestamps](#timestamps)  |                    | [Computed](#computed)            
-[Code](#code)            |                            |                    |                                  
-[Markdown](#markdown)    |                            |                    |                                  
 
 #### String
 
@@ -146,22 +144,6 @@ $schema->float('price');
 ```
 
 Numbers are simple text fields that provide special filter.
-
-#### Code
-
-This field will display a code editor ([Ace](ace.c9.io)) with specified mode, theme and height.
-
-```php
-$schema->code('code')->theme('monokai')->mode('js')->height(150);
-```
-
-#### Markdown
-
-A code editor with possibility to view parsed text.
-
-```php
-$schema->markdown('text');
-```
 
 #### Enum
 

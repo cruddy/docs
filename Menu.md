@@ -33,20 +33,19 @@ You can add a link to any other resource by defining either `href`, `url` or `ro
 'menu' =>
 [
     [ 'label' => 'Dashboard', 'url' => 'dashboard' ],
-    [ 'label' => 'Custom page', 'route' => [ 'route.id', 'param' => 'value' ] ],
+    'Custom page' => [ 'route' => [ 'route.id', 'param' => 'value' ] ],
 ]
 ```
 
 There is a shortcut for defining URL's:
 
 ```php
-'menu' =>
-[
+'menu' => [
     'Dashboard' => 'dashboard',
 ]
 ```
 
-#### Disabling menu item
+#### Hiding menu items
 
 Sometimes you need to hide a menu item if user doesn't have enough permissions.
 You can set `permissions` options which is a closure that should return boolean
@@ -58,7 +57,7 @@ value to indicate whether the item is visible or not.
     [
         'label' => 'Import',
         'route' => 'import',
-        'permissions' => function () { return Auth::user()->isAdmin(); },
+        'visible' => function () { return Auth::user()->isAdmin(); },
     ],
 ]
 ```
@@ -70,17 +69,7 @@ When getting more and more links, it's time to group some of them together:
 ```php
 'menu' =>
 [
-    'Auth' => [ 'users', 'groups' ],
-]
-```
-
-Or more expanded version:
-
-```php
-'menu' =>
-[
-    [
-        'label' => 'Auth',
+    'Auth' => [
         'items' => [ 'users', 'groups' ],
         // Any other attributes
     ],
@@ -94,41 +83,16 @@ You can insert vertical or horizontal separator like so:
 ```php
 'menu' =>
 [
-   'products', 'categiries',
+   'products', 'categories',
    '-', // this is a separator
    'users', 'groups',
 ]
 ```
 
-### Specifying icons
+### Additional options
 
-You can attach [bootstrap's glyphicon](http://getbootstrap.com/components/#glyphicons) to a menu item:
-
-```php
-'menu' =>
-[
-    [ 'label' => 'Dashboard', 'url' => 'dashboard', 'icon' => 'dashboard' ],
-]
-```
-
-### Additional attributes
-
-Any other key in the array will be set as an attribute on the menu item element,
-so it is possible to provide additional information:
-
-```php
-'menu' =>
-[
-    [
-        'label' => 'Dashboard',
-        'url' => 'dashboard',
-        'icon' => 'dashboard',
-        
-        'id' => 'dashboard',
-        'data-foo' => 'bar',
-    ],
-]
-```
+Cruddy's menu builder is built upon [kalnoy/illuminate-menu](http://github.com/lazychaser/illuminate-menu) package,
+please read it's documentation to see more options.
 
 ## Service menu
 

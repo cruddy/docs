@@ -20,5 +20,6 @@ Getting started                  | Configuration                | Entity
 
 ## Advanced
 
-* Read a [[workflow]] article to learn how Cruddy works internally
-* [[Extending Cruddy|writing-plugins]]
+*   Read a [[workflow]] article to learn how Cruddy works internally
+*   [[Extending Cruddy|writing-plugins]]
+*   [[Plugins]]
