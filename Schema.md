@@ -205,8 +205,7 @@ public function columns($schema)
 Or this way:
 
 ```php
-$schema->states(
-[
+$schema->states( [
     // The model will have a state of "new" if closure returns true
     'new' => function ($model) { return $model->isNew(); },
 ]);

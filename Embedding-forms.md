@@ -2,13 +2,20 @@ In this tutorial we will see in detail what are inline fields and how they are u
 
 ![Embedded meta data entity](https://drive.google.com/uc?id=0B8WgmUNiDzmyc1JwRU5DaFVqQjg)
 
-Laravel Eloquent supports many relation types. Let's talk about one-to-one relation type. How is it usefull? Well, I was asked this question long time ago when I was interviewed, and I didn't know the answer. But it's rather simple. I like to think about one-one relationship as an extension to the base table. This means that base table (i.e. post) may have additional data that is stored in separate table (i.e. html meta data), and may not have one. You can add as many extensions as you want without altering and adding new columns to the base table, therefore keeping things simple.
+Laravel Eloquent supports many relation types. Let's talk about one-to-one relation type. How is it usefull? Well, I was
+asked this question long time ago when I was interviewed, and I didn't know the answer. But it's rather simple. I like
+to think about one-one relationship as an extension to the base table. This means that base table (i.e. post) may have
+additional data that is stored in separate table (i.e. html meta data), and may not have one. You can add as many extensions
+as you want without altering and adding new columns to the base table, therefore keeping things simple.
 
 Cruddy allows to edit your extensions together with your base model. Imagine this as embeding other entity's fields into one form.
 
 ## Prerequisites
 
-Let's extend our `Post` model from [[getting started]] tutorial. We'll add meta data extension to it. The model will hold `title`, `description` and `keywords` attributes that can be used in frontend. We'll be more provident and make this model morphable, since many types of content can have metadata. So our `Post` establishes morph-to-one relationship with `MetaData` model.
+Let's extend our `Post` model from [[getting started]] tutorial. We'll add meta data extension to it. The model will
+hold `title`, `description` and `keywords` attributes that can be used in frontend. We'll be more provident and make
+this model morphable, since many types of content can have metadata. So our `Post` establishes morph-to-one relationship
+with `MetaData` model.
 
 Our goal is to embed our metadata into post data for comfort. Let's begin with creating model.
 
@@ -17,7 +24,7 @@ Our goal is to embed our metadata into post data for comfort. Let's begin with c
 At first, we need to create migration:
 
 ```
-php artisan migrate:make create_meta_table --create meta
+php artisan make:migration create_meta_table --create meta
 ```
 
 The schema looks like this:
@@ -43,7 +50,7 @@ php artisan migrate
 Here is how model looks, nothing extraordinary:
 
 ```php
-// app/models/Meta.php
+// app/Meta.php
 <?php
 
 class Meta extends Eloquent {
@@ -65,26 +72,29 @@ public function meta()
 
 ## Entity
 
-Now when model is set up, we need to generate a schema for it. Since the meta entity will be embeded, we only need to define fields and rules (not required).
+Now when model is set up, we need to generate a schema for it. Since the meta entity will be embeded, we only need to
+define fields and rules (not required).
 
 Run this to generate new schema:
 
 ```
-php artisan cruddy:schema MetaSchema --model Meta
+php artisan make:entity Meta
 ```
 
 After cleanup and defining fields we have following:
 
 ```php
-// app/entities/MetaSchema
+// app/Entities/Meta
 <?php
+
+namespace App\Entities;
 
 use Kalnoy\Cruddy\Schema\BaseSchema;
 use Kalnoy\Cruddy\Service\Validation\FluentValidator;
 
 class MetaSchema extends BaseSchema {
 
-    protected $model = 'Meta';
+    protected $model = 'App\Meta';
 
     /**
      * Define some fields.
@@ -120,20 +130,14 @@ class MetaSchema extends BaseSchema {
 }
 ```
 
-The schema is not accessible for now, we need to add it to the repository. Open package configuration and add the line to the `entities` section:
+The schema is not accessible for now, we need to add it to the repository. Open package configuration and add the line
+to the `entities` section:
 
 ```php
-'entities' =>
-[
+'entities' => [
     'posts' => 'PostSchema',
     'meta' => 'MetaSchema',
 ],
-```
-
-Don't forget to update composer class map:
-
-```
-composer dump-autoload -o
 ```
 
 The only thing is left is to embed meta entity into post form. This is done in `PostSchema` in fields configuration:
@@ -148,4 +152,5 @@ That's it! You can now add meta data to your posts.
 
 ## Conclusion
 
-As you can see, embeding forms in nothing complex. We have inlined single form, but Cruddy supports one-to-many and morph-to-many relationships. I think this feature is going to increase productivity of content managers.
+As you can see, embeding forms in nothing complex. We have inlined single form, but Cruddy supports one-to-many and
+morph-to-many relationships. I think this feature is going to increase productivity of content managers.

@@ -19,14 +19,13 @@ In this tutorial you'll learn how to install Cruddy on top of your Laravel app. 
 Cruddy is available as a composer package. To install it, run following command in the terminal (make shure that current directory is your app's root):
 
 ```
-composer require kalnoy/cruddy:~0.3.0
+composer require kalnoy/cruddy:~0.5.0
 ```
 
 Then you need to publish some assets and config file:
 
 ```
-php artisan config:publish kalnoy/cruddy
-php artisan asset:publish kalnoy/cruddy
+php artisan vendor:publish
 ```
 
 _You might want to publish assets when composer is updated since Cruddy assets are updated frequently. See [composer scripts](https://getcomposer.org/doc/articles/scripts.md)._
@@ -79,7 +78,7 @@ $table->timestamps();
 Pretty common schema, right? Here is the model class:
 
 ```php
-// app/models/Post.php
+// app/Post.php
 <?php
 
 /**
@@ -97,17 +96,17 @@ class Post extends Eloquent {
 Cruddy has a command for generating basic schema. To do this, simply execute following:
 
 ```
-php artisan cruddy:schema PostSchema --model Post
+php artisan make:entity Post
 ```
 
-New schema will be created in `app/entities` directory. For now, this is just a class that is not even autoloaded, so we need to do two things: add directory to composer class map and add schema to the entity repository. I hope you know how to make a directory autoloadable.
+New schema will be created in `app/Entities` directory.
 
 To add schema to the repository, you need to open cruddy configuration file (`app/config/packages/kalnoy/cruddy/config.php`) and add a line to `entities` section, like so:
 
 ```php
 'entities' =>
 [
-    'posts' => 'PostSchema',
+    'posts' => 'App\Entities\Post',
 ],
 ```
 
@@ -135,17 +134,22 @@ public function fields($schema)
 }
 ```
 
-Fields definition is much like Laravel's Blueprint that we use to define table columns. Here we have added three fields besides auto generated ones: `title`, `body`, and `active`. They map to actual table columns and are of basic data type. Then, you'll learn about more complex data types like relations and inline forms.
+Fields definition is much like Laravel's Blueprint that we use to define table columns. Here we have added three fields
+besides auto generated ones: `title`, `body`, and `active`. They map to actual table columns and are of basic data type.
+Then, you'll learn about more complex data types like relations and inline forms.
 
-Have you noticed `required` modificator? It just tels the UI to display addional note that field is required, it doesn't do any validation!
+Have you noticed `required` modifier? It just tels the UI to display additional note that field is required, it doesn't
+do any validation!
 
-Most of fields return actual field object which can be altered with some modificators, but some are just macros, like `timestamps`. This macros adds two fields: `updated_at` and `created_at`. You can define your own macros.
+Most of fields return actual field object which can be altered with some modifiers, but some are just macros, like 
+`timestamps`. This macros adds two fields: `updated_at` and `created_at`. You can define your own macros.
 
 [[See the list of available fields|Fields]].
 
 #### Columns
 
-Column will display some value in the list of items. It just extracts data from a model and displays it in special format. They are also responsible for sorting data, but not all columns can do that.
+Column will display some value in the list of items. It just extracts data from a model and displays it in special
+format. They are also responsible for sorting data, but not all columns can do that.
 
 Here is the columns for `Post` model:
 
@@ -165,8 +169,8 @@ We just reference fields here. This is the most common use case.
 
 #### Default values for fields
 
-We can set default values for fields in creation form. For that we need add property ```$defaults``` array, where key is field's id, and value - field's value.
-For example:
+We can set default values for fields in creation form. For that we need add property ```$defaults``` array, where key
+is field's id, and value - field's value. For example:
 
 ```php
 protected $defaults = ['free' => true, 'booked' => true, 'number' => '2'];
@@ -184,7 +188,10 @@ Each filter coresponds to a field. Not all fields can filter data.
 
 #### Image
 
-We've added all fields except image. This type of field needs some explanation. Since fields just process data, they cannot upload files. This is the responsibility of the repository how to deal with them. Default schema has special function `files` where you can specify what files repository should upload and where to upload them. This is how we can say repository to upload our image:
+We've added all fields except image. This type of field needs some explanation. Since fields just process data, they
+cannot upload files. This is the responsibility of the repository how to deal with them. Default schema has special
+function `files` where you can specify what files repository should upload and where to upload them. This is how we
+can say repository to upload our image:
 
 ```php
 public function files($repo)
@@ -193,7 +200,9 @@ public function files($repo)
 }
 ```
 
-From this point, the repository will upload any file or files under `image` key to `public/files` and return path to that file against public directory (i.e. `files/jAsfn12.png`). Read more about how files are uploaded in [[this article|repository]].
+From this point, the repository will upload any file or files under `image` key to `public/files` and return path to
+that file against public directory (i.e. `files/jAsfn12.png`). Read more about how files are uploaded in
+[[this article|repository]].
 
 Don't forget to add a field to the schema:
 
@@ -207,9 +216,11 @@ And we can also display image in the list of posts:
 $schema->col('image')->format('Image');
 ```
 
-We've used a formatter here or otherwise you would see a path to file rather than an image. Read more about columns and formatters [[here|columns]].
+We've used a formatter here or otherwise you would see a path to file rather than an image. Read more about columns and
+formatters [[here|columns]].
 
-But we are not done yet. What if user deletes the item that has some files? We need to delete the file, too. We need to handle `deleted` event. Ideal place to do this is `boot` method of `Post` model:
+But we are not done yet. What if user deletes the item that has some files? We need to delete the file, too. We need to
+handle `deleted` event. Ideal place to do this is `boot` method of `Post` model:
 
 ```php
 public static function boot()
@@ -226,7 +237,9 @@ public static function boot()
 
 #### Validation
 
-Now we have defined fields and columns, so we can see a list of models, we can create new and update old ones. But we don't validate data at all. And this is, among other things, is very important. Though Cruddy has advanced validator, we won't use it's full power for now.
+Now we have defined fields and columns, so we can see a list of models, we can create new and update old ones.
+But we don't validate data at all. And this is, among other things, is very important. Though Cruddy has advanced
+validator, we won't use it's full power for now.
 
 _Cruddy uses Laravel validation system, so defining rules is nothing complex._
 
@@ -235,8 +248,7 @@ We marked `title` and `body` is required, so let's check this to be true:
 ```php
 public function rules($v)
 {
-    $v->rules(
-    [
+    $v->always([
         'title' => 'required',
         'body' => 'required',
         'image' => 'image',
@@ -248,11 +260,12 @@ That's it! Nothing else. Crazy simple. [[More about validation|validation]].
 
 ### Making it visible
 
-Everything is done for the schema. But we don't have a way to access it besides entering an address in browser. For this reason Cruddy has configurable menu. There is a section called `menu` in package configuration. You can reference entity there simply entering it's identifier:
+Everything is done for the schema. But we don't have a way to access it besides entering an address in browser.
+For this reason Cruddy has configurable menu. There is a section called `menu` in package configuration.
+You can reference entity there simply entering it's identifier:
 
 ```php
-'menu' =>
-[
+'menu' => [
     'posts',
 ],
 ```
@@ -260,9 +273,8 @@ Everything is done for the schema. But we don't have a way to access it besides 
 You can group several entities:
 
 ```php
-'menu' =>
-[
-    'Content' => [ 'posts', 'pages' ],
+'menu' => [
+    'Content' => [ 'items' => [ 'posts', 'pages' ] ],
 ],
 ```
 
@@ -270,7 +282,8 @@ You can group several entities:
 
 ### Dashboard
 
-When you open start page you see nothing but main navigation. You can specify either a view that will be displayed as dashboard, or you can specify an entity. It is done in configuration file:
+When you open start page you see nothing but main navigation. You can specify either a view that will be displayed as
+dashboard, or you can specify an entity. It is done in configuration file:
 
 ```php
 // You need to prefix entity identifier with @ to let system know

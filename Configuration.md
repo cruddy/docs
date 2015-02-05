@@ -3,10 +3,10 @@
 In order to be able to alter Cruddy's configuration, you need to publish the config using artisan command:
 
 ```
-php artisan config:publish kalnoy/cruddy
+php artisan vendor:publish
 ```
 
-You can now edit configuration in `app/config/packages/kalnoy/cruddy/config.php` file.
+You can now edit configuration in `config/cruddy.php` file.
 
 ## Configuration options
 
@@ -41,8 +41,10 @@ Each schema is resolved from the IoC container.
 
 ### Presentational options
 
-`brand` and `brand_url` determine the application name and the url to the main page, the link will be displayed in the left part of the main navigation.
+`brand` and `brand_url` determine the application name and the url to the main page, the link will be displayed in the
+left part of the main navigation.
 
 ### Menu configuration
 
-`menu` option configures main menu, `service_menu` can be used to define additional menu items in the right part of the main navigation. [[Read more about configuring menu items|menu]].
+`menu` option configures main menu, `service_menu` can be used to define additional menu items in the right part of
+the main navigation. [[Read more about configuring menu items|menu]].

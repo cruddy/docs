@@ -23,5 +23,5 @@ Tutorials
 Advanced
 --------
 
--   [[Workflow]]
+-   [[Plugins]]
 -   [[Writing plugins]]

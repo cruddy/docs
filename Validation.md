@@ -9,8 +9,7 @@ You can define validation rules under schema's `rules` method:
 ```php
 public function rules($v)
 {
-    $v->rules(
-    [
+    $v->always([
         'name' => 'required|max:255',
         'slug' => 'required|max:255|slug',
         'description' => 'required',
@@ -23,26 +22,24 @@ See the list of [available rules](http://laravel.com/docs/validation#available-v
 
 ### Separating rules by action
 
-Sometimes there is need to add some rules only for new models, or only for existing models. Default validator allows to define separate rules for `create` and `update`:
+Sometimes there is need to add some rules only for new models, or only for existing models.
+Default validator allows to define separate rules for `create` and `update`:
 
 ```php
 public function rules($v)
 {
     // Default rules
-    $v->always(
-    [
+    $v->always([
         'password' => 'max:255',
     ]);
 
     // This rules will be applied only when model is created
-    $v->fresh(
-    [
+    $v->fresh([
         'password' => 'required',
     ]);
 
     // This rules will be applied only when model is updated
-    $v->existing(
-    [
+    $v->existing([
         'password' => 'required_with:change_password',
     ]);
 }
@@ -52,16 +49,15 @@ Specific rules are _merged_ with default rules based on whether the model exists
 
 ### Referencing input
 
-It's such a pain when you need to define `unique` rule... When model is updated, you need to specify an id of the model to exclude it from validating. You can now reference input data by inserting string key in curly braces:
+It's such a pain when you need to define `unique` rule... When model is updated, you need to specify an id of the
+model to exclude it from validating. You can now reference input data by inserting string key in curly braces:
 
 ```php
-$v->fresh(
-[
+$v->fresh([
     'slug' => 'unique:products,slug'
 ]);
 
-$v->existing(
-[
+$v->existing([
     'slug' => 'unique:products,slug,{id}'
 ]);
 ```
@@ -84,4 +80,5 @@ $v->customAttributes([ 'foo' => 'bar' ]);
 
 ## Custom validator
 
-Custom validator must implement `Kalnoy\Cruddy\Service\Validation\ValidableInterface`. Validator is returned from schema's `validator` method. See [SchemaInterface](https://github.com/lazychaser/cruddy/blob/1.0/src/Kalnoy/Cruddy/Schema/SchemaInterface.php).
+Custom validator must implement `Kalnoy\Cruddy\Service\Validation\ValidableInterface`. Validator is returned from
+schema's `validator` method.
