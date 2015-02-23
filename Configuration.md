@@ -22,8 +22,9 @@ You can also provide an entity identifier:
 'dashboard' => '@users',
 ```
 
-`auth_filter` is a filter name that is used before any request to the Cruddy. In this filter you can check whether the 
-user is authenticated and has required permissions. The default value is `null`, meaning anyone can access the backend.
+`middleware` is a middleware name that is used before any request to the Cruddy. In this filter you can check whether 
+the user is authenticated and has required permissions. The default value is `null`, meaning anyone can access the 
+backend.
 
 `permissions` is an identifier of permissions driver. The driver manages per-entity permissions. [[More about permissions|permissions]].
 

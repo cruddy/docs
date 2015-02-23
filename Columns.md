@@ -29,6 +29,13 @@ You can specify a clause to allow ordering:
 $s->compute('full_name', ...)->clause(DB::raw('concat(first_name, last_name)'));
 ```
 
+If you intent to use some relations to compute the value, you should specify which you'll use
+to eagerly load them:
+
+```php
+$s->compute('total', ...)->eager('items');
+```
+
 ## Default configuration
 
 ### Setting formatter

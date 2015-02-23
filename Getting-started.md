@@ -25,10 +25,16 @@ composer require kalnoy/cruddy:~0.5.0
 Then you need to publish some assets and config file:
 
 ```
-php artisan vendor:publish
+php artisan vendor:publish --provider="Kalnoy\Cruddy\CruddyServiceProvider"
 ```
 
 _You might want to publish assets when composer is updated since Cruddy assets are updated frequently. See [composer scripts](https://getcomposer.org/doc/articles/scripts.md)._
+
+To republish assets:
+
+```
+php artisan vendor:publish --force --tag cruddy
+```
 
 The next step is to enable Cruddy by adding a service provider:
 
@@ -104,8 +110,7 @@ New schema will be created in `app/Entities` directory.
 To add schema to the repository, you need to open cruddy configuration file (`app/config/packages/kalnoy/cruddy/config.php`) and add a line to `entities` section, like so:
 
 ```php
-'entities' =>
-[
+'entities' => [
     'posts' => 'App\Entities\Post',
 ],
 ```
