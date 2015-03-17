@@ -153,6 +153,17 @@ protected function defaults()
 }
 ```
 
+### Eager loads
+
+If your entity uses computed properties, or converting model to string depends on related models, you can specify
+which of relations should be eagerly loaded by specifying property:
+
+```php
+protected $eagerLoads = [ 'relation' ];
+```
+
+These relations are loaded when a list of models is queried for data grid.
+
 ### Advanced filters
 
 Besides search box that is available for every entity, you can add more complex
