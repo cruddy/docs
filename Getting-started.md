@@ -124,7 +124,7 @@ _Each schema component is defined in separate function. I will provide full comp
 Field is an input that you are able to edit in the form. Let's add some under `fields` function in schema definition:
 
 ```php
-public function fields($schema)
+protected function fields($schema)
 {
     $schema->increments('id');
     
@@ -159,7 +159,7 @@ format. They are also responsible for sorting data, but not all columns can do t
 Here is the columns for `Post` model:
 
 ```php
-public function columns($schema)
+protected function columns($schema)
 {
     $schema->col('id');
     $schema->col('title');
@@ -199,7 +199,7 @@ function `files` where you can specify what files repository should upload and w
 can say repository to upload our image:
 
 ```php
-public function files($repo)
+protected function files($repo)
 {
     $repo->uploads('image');
 }
@@ -228,7 +228,7 @@ But we are not done yet. What if user deletes the item that has some files? We n
 handle `deleted` event. Ideal place to do this is `boot` method of `Post` model:
 
 ```php
-public static function boot()
+protected static function boot()
 {
     parent::boot();
 
@@ -251,7 +251,7 @@ _Cruddy uses Laravel validation system, so defining rules is nothing complex._
 We marked `title` and `body` is required, so let's check this to be true:
 
 ```php
-public function rules($v)
+protected function rules($v)
 {
     $v->always([
         'title' => 'required',

@@ -41,7 +41,7 @@ php artisan cruddy:schema FooSchema --namespace Acme\Entities
 Fields are set up in `fields` method:
 
 ```php
-public function fields($s)
+protected function fields($s)
 {
     $s->primary('id');
     $s->string('name');
@@ -55,7 +55,7 @@ See the list of [[available fields|fields]].
 Columns are defined in `columns` method:
 
 ```php
-public function columns($s)
+protected function columns($s)
 {
     $s->col('id');
     $s->col('name');
@@ -76,7 +76,7 @@ Here's the example of the layout:
 
 
 ```php
-public function layout($l)
+protected function layout($l)
 {
     $l->row([ 'first_name', 'last_name' ]);
     $l->fieldset('Credentials', [ 'email', 'password' ]);
@@ -119,6 +119,7 @@ key to represent a model. You can set other attribute that will be used:
 ```php
 protected $titleAttribute = 'name';
 ```
+
 You can also override `toString` method to get more control:
 
 ```php
@@ -181,7 +182,7 @@ models, numbers and booleans.
 If you need to override default per page value that is acquired from a model:
 
 ```php
-protected $perPage = 50;
+public $perPage = 50;
 ```
 
 ### Providing external url
@@ -190,7 +191,7 @@ If you want to have a link to the model on main site in backend, you can overrid
 special method:
 
 ```php
-protected function externalUrl($model)
+public function toUrl($model)
 {
     return route('post.show', [ $model->getKey() ]);
 }
@@ -202,10 +203,8 @@ You can apply custom CSS classes or _states_ per row in the datagrid. You
 just need to define a meta column `states` like so:
 
 ```php
-public function columns($schema)
+protected function columns($schema)
 {
-    ...
-
     $schema->states(function ($model)
     {
         return $model->isNew() : 'new' : '';    
@@ -230,8 +229,7 @@ Since Cruddy is based on Twitter Bootstrap, the datagrid has following
 `success` (green), `info` (blue), `warning` (yellow), `danger` (red).
 
 ```php
-$schema->states(
-[
+$schema->states([
     'success' => function ($model) { return $model->isNew(); },
 ]);
 ```

@@ -7,7 +7,7 @@ Validation rules are defined in [[the schema|schema]]. Cruddy uses Laravel valid
 You can define validation rules under schema's `rules` method:
 
 ```php
-public function rules($v)
+protected function rules($v)
 {
     $v->always([
         'name' => 'required|max:255',
@@ -26,7 +26,7 @@ Sometimes there is need to add some rules only for new models, or only for exist
 Default validator allows to define separate rules for `create` and `update`:
 
 ```php
-public function rules($v)
+protected function rules($v)
 {
     // Default rules
     $v->always([

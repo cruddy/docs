@@ -252,23 +252,9 @@ $schema->image('baz')->height(100);
 
 #### Computed
 
-Sometimes you need to just display some value that is not actually stored in database. You can use computed field for this:
+You can display some computed value that will not be editable.
 
-```php
-$schema->computed('total', function ($model) { return $model->getTotal(); });
-```
-
-You can also specify a method on model class, so previous example can be implemented even so:
-
-```php
-$schema->computed('total', 'getTotal');
-```
-
-Actually, Cruddy will guess that you need function `getTotal` for `total` attribute, so this can be further shorten to this:
-
-```php
-$schema->computed('total');
-```
+[[Read more|computed attributes]]
 
 ### Relational types
 

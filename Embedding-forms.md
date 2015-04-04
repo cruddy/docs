@@ -101,7 +101,7 @@ class MetaSchema extends BaseSchema {
      *
      * @param $schema
      */
-    public function fields($schema)
+    protected function fields($schema)
     {
         $schema->increments('id');
         
@@ -118,10 +118,9 @@ class MetaSchema extends BaseSchema {
      *
      * @param $v
      */
-    public function rules($v)
+    protected function rules($v)
     {
-        $v->rules(
-        [
+        $v->always([
             'title' => 'max:255',
             'keywords' => 'max:255',
             'description' => 'max:255',

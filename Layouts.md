@@ -6,7 +6,7 @@ Here's the example of the layout:
 
 
 ```php
-public function layout($l)
+protected function layout($l)
 {
     $l->row([ 'first_name', 'last_name' ]);
     $l->fieldset('Credentials', [ 'email', 'password' ]);
@@ -101,8 +101,7 @@ Each element of the array can be a string or another array. The string means a f
 an array means row definition.
 
 ```php
-$e->fieldset('Title',
-[
+$e->fieldset('Title', [
     // a row
     [ 'first_name', 'last_name', [ 2, 'is_active' ] ],
     

@@ -13,27 +13,29 @@ $s->col('name');
 
 Now you will have a column that will display the value of the field `name`.
 
+You can specify which field to use directly:
+
+```php
+$s->col('foo', 'bar');
+```
+
+To specify multiple columns:
+
+```php
+$s->cols([ 'id', 'name', 'foo' => 'bar' ]);
+```
+
+### Computed columns
+
 Sometimes you need to display non-ordinary data. Computed columns come in handy.
 You can specify a closure for extracting a data:
 
-```php
-$s->compute('full_name', function ($person)
-{
-    return $person->first_name.' '.$person->last_name;
-});
-```
+[[Read more|computed attributes]]
 
 You can specify a clause to allow ordering:
 
 ```php
 $s->compute('full_name', ...)->clause(DB::raw('concat(first_name, last_name)'));
-```
-
-If you intent to use some relations to compute the value, you should specify which you'll use
-to eagerly load them:
-
-```php
-$s->compute('total', ...)->eager('items');
 ```
 
 ## Default configuration
