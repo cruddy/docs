@@ -92,3 +92,12 @@ please read it's documentation to see more options.
 Besides main menu you can define a service menu that is displayed in the right corner.
 The rules for building menu items are the same. Service menu is defined under
 `service_menu` configuration option.
+
+## Menu items provider
+
+To support config caching, your menu items cannot be defined in config file if they require closures to control 
+availability. In this case, you can specify the class name that will provide menu items:
+
+```php
+'service_menu' => 'App\Providers\BackendMenu@getServiceMenu',
+```
