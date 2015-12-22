@@ -92,7 +92,7 @@ namespace App\Entities;
 use Kalnoy\Cruddy\Schema\BaseSchema;
 use Kalnoy\Cruddy\Service\Validation\FluentValidator;
 
-class MetaSchema extends BaseSchema {
+class Meta extends BaseSchema {
 
     protected $model = 'App\Meta';
 
@@ -134,12 +134,12 @@ to the `entities` section:
 
 ```php
 'entities' => [
-    'posts' => 'PostSchema',
-    'meta' => 'MetaSchema',
+    'posts' => App\Entities\Post::class,
+    'meta' => App\Entities\Meta::class,
 ],
 ```
 
-The only thing is left is to embed meta entity into post form. This is done in `PostSchema` in fields configuration:
+The only thing is left is to embed meta entity into post form. This is done in `Post` entity in fields configuration:
 
 ```php
 $schema->embed('meta', 'meta');

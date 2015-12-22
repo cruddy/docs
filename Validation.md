@@ -53,14 +53,12 @@ It's such a pain when you need to define `unique` rule... When model is updated,
 model to exclude it from validating. You can now reference input data by inserting string key in curly braces:
 
 ```php
-$v->fresh([
-    'slug' => 'unique:products,slug'
-]);
-
-$v->existing([
+$v->always([
     'slug' => 'unique:products,slug,{id}'
 ]);
 ```
+
+If input does not have referenced value, `NULL` value is specified.
 
 ### Providing custom messages
 

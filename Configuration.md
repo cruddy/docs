@@ -33,8 +33,8 @@ schema's class name. For example:
 
 ```php
 'entities' => [
-    'users' => 'UserSchema',
-    'groups' => 'GroupSchema',
+    'users' => App\Entities\User::class,
+    'groups' => App\Entities\Group::class,
 ],
 ```
 

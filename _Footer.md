@@ -1,1 +1,0 @@
-You can play around with Cruddy at [playground](http://cruddy-demo.eu1.frbit.net/).

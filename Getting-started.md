@@ -30,17 +30,17 @@ php artisan vendor:publish --provider="Kalnoy\Cruddy\CruddyServiceProvider"
 
 _You might want to publish assets when composer is updated since Cruddy assets are updated frequently. See [composer scripts](https://getcomposer.org/doc/articles/scripts.md)._
 
-To republish assets:
+To republish the assets:
 
 ```
-php artisan vendor:publish --force --tag cruddy
+php artisan vendor:publish --force --tag public
 ```
 
 The next step is to enable Cruddy by adding a service provider:
 
 ```php
 'providers' => array(
-    'Kalnoy\Cruddy\CruddyServiceProvider',
+    Kalnoy\Cruddy\CruddyServiceProvider::class,
 ),
 ```
 
@@ -48,7 +48,7 @@ You can also specify a facade to quickly access [[the environment]]:
 
 ```php
 'facades' => array(
-    'Cruddy' => 'Kalnoy\Cruddy\Facades\Cruddy',
+    'Cruddy' => Kalnoy\Cruddy\Facades\Cruddy::class,
 ),
 ```
 
@@ -87,10 +87,12 @@ Pretty common schema, right? Here is the model class:
 // app/Post.php
 <?php
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Model Post
  */
-class Post extends Eloquent {
+class Post extends Model {
 
     protected $table = 'posts';
 
@@ -111,7 +113,7 @@ To add schema to the repository, you need to open cruddy configuration file (`ap
 
 ```php
 'entities' => [
-    'posts' => 'App\Entities\Post',
+    'posts' => App\Entities\Post::class,
 ],
 ```
 
@@ -128,11 +130,8 @@ protected function fields($schema)
 {
     $schema->increments('id');
     
-    $schema->string('title')->required();
-
-    // Use ACE to edit body as markdown
-    $schema->markdown('body')->required();
-
+    $schema->string('title');
+    $schema->text('body');
     $schema->boolean('active');
 
     $schema->timestamps();
@@ -142,9 +141,6 @@ protected function fields($schema)
 Fields definition is much like Laravel's Blueprint that we use to define table columns. Here we have added three fields
 besides auto generated ones: `title`, `body`, and `active`. They map to actual table columns and are of basic data type.
 Then, you'll learn about more complex data types like relations and inline forms.
-
-Have you noticed `required` modifier? It just tels the UI to display additional note that field is required, it doesn't
-do any validation!
 
 Most of fields return actual field object which can be altered with some modifiers, but some are just macros, like 
 `timestamps`. This macros adds two fields: `updated_at` and `created_at`. You can define your own macros.
@@ -161,9 +157,7 @@ Here is the columns for `Post` model:
 ```php
 protected function columns($schema)
 {
-    $schema->col('id');
-    $schema->col('title');
-    $schema->col('active');
+    $schema->cols([ 'id', 'title', 'active' ]);
     $schema->col('updated_at')->orderDirection('desc');
 }
 ```
@@ -189,7 +183,7 @@ By default, Cruddy adds a search box for filtering data. You can add other more 
 protected $filters = ['active'];
 ```
 
-Each filter coresponds to a field. Not all fields can filter data.
+Each filter corresponds to a field. Not all fields can filter data.
 
 #### Image
 
