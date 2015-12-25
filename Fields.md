@@ -179,6 +179,14 @@ You can specify a prompt item:
 $schema->enum('type', [...])->prompt('Please, select a type.');
 ```
 
+Enum can become a set (i.e. multiple values accepted):
+
+```php
+$schema->enum('role', [...])->multiple();
+```
+
+Make sure, that `role` field is casted to array in your model.
+
 #### Boolean
 
 ```php
