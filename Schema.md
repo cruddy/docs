@@ -43,7 +43,7 @@ Fields are set up in `fields` method:
 ```php
 protected function fields($s)
 {
-    $s->primary('id');
+    $s->increments('id');
     $s->string('name');
 }
 ```
@@ -57,8 +57,8 @@ Columns are defined in `columns` method:
 ```php
 protected function columns($s)
 {
-    $s->col('id');
-    $s->col('name');
+    $s->cos([ 'id', 'name' ]);
+    $s->col('updated_at')->reversed();
 }
 ```
 

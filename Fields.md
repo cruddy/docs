@@ -106,7 +106,8 @@ String types             | Date types                 | File types         | Oth
 [String](#string)        | [Datetime](#datetime)      | [File](#file)      | [Number formats](#number-formats)
 [Email](#email)          | [Date](#date)              | [Image](#image)    | [Enum](#enum)                    
 [Password](#password)    | [Time](#time)              |                    | [Boolean](#boolean)              
-[Text](#text)            | [Timestamps](#timestamps)  |                    | [Computed](#computed)            
+[Text](#text)            | [Timestamps](#timestamps)  |                    | [Computed](#computed)    
+[Slug](#slug)            |                            |                    |
 
 #### String
 
@@ -135,6 +136,17 @@ Simple text editing input, represented by `<textarea>`.
 ```php
 $schema->text('bio')->rows(5);
 ```
+
+#### Slug
+
+Slug is a text field that applies `str_slug` on its data before validating and
+saving the model. Also, it can copy value from target field:
+
+```php
+$schema->slug('slug', 'title');
+```
+
+Now field `slug` copies value from `title` field when creating new instance.
 
 #### Number formats
 
