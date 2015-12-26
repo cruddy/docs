@@ -234,6 +234,17 @@ $schema->states([
 ]);
 ```
 
+### Specifying searchable fields
+
+Cruddy uses search anything feature for searching. This means that when you search
+something, it will test every text-like field for specified keywords. This is not
+desirable in some cases. You can specify which fields should be searchable. You
+need to define protected property on your entity:
+
+```php
+protected $searchable = [ 'id', 'title' ];
+```
+
 ## More control
 
 - [Custom validator](validation#custom-validator)
