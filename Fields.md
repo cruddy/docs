@@ -148,6 +148,12 @@ $schema->slug('slug', 'title');
 
 Now field `slug` copies value from `title` field when creating new instance.
 
+You can specify which separator to use:
+
+```php
+$schema->slug('slug', 'title')->separator('_');
+```
+
 #### Number formats
 
 You can define an integer and a float types:
