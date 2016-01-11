@@ -129,6 +129,18 @@ public function toString($product)
 }
 ```
 
+Sometimes it is helpful to display something useful besides simple text. You can do
+this using `toHTML` method:
+
+```php
+public function toHTML($model)
+{
+    return '<img src="'.$model->file.'">';
+}
+```
+
+The value of this function is used in drop downs and grid.
+
 ### Setting default order
 
 You can provide a name of the column which is used to order models by default:
